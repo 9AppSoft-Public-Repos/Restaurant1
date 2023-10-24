@@ -1,30 +1,26 @@
+server:
+  port: 8991
 
 spring:
   kafka:
-    bootstrap-servers: http://localhost:9092  #http://kafka-service:9092
+    bootstrapServers: http://localhost:9092
     consumer:
-      group-id: waya
+      group-id: xerointegration
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       auto-offset-reset: earliest
-
+  main:
+    allow-bean-definition-overriding: true
 xero:
   upload:
-    transactions: https://api.xero.com/api.xro/2.0/BankTransactions
+    journal: https://api.xero.com/api.xro/2.0/ManualJournals
   fetch:
-    transactions: https://api.xero.com/api.xro/2.0/BankTransactions
+    journal: https://api.xero.com/api.xro/2.0/ManualJournals
   token-url: https://identity.xero.com/connect/token
-  client-id: 6E65088E1C844314B2EBB25B35BF4E7E #BD70F172FA204D87B644066E1D1A13CE
-  client-secret: RvQv2bC4XRP6snUsSNgM_uCxnSLvcPvuq6v7QteXNoxF2qlT #_LxvEU0Bus3dvgH-xXEa2S6akn9JAOZ7MBVOKkTNuJZOMweF
-  grant-type: authorization_code
-  refresh-grant-type: refresh_token
-  scope: offline_access openid profile email accounting.transactions
-  redirect-uri: http://localhost:8080/xero/redirect
-  auth-url: https://login.xero.com/identity/connect/authorize
-  response-type: code
-  tenant-url: https://api.xero.com/connections
-
-
+  client-id: 58DF5099FB964BD9A51314D47CF4C89C
+  client-secret: NjsgJjBRnG9SDKzkbB9lR9VMA8y_WSzqAAsCAfOZYMLsPkMV
+  grant-type: client_credentials
+  scope: accounting.transactions
 
 waya:
   transaction: https://services.staging.wayabank.ng/temporal-service/api/v1/wallet/account/transactions/

@@ -5,11 +5,13 @@ import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -56,8 +58,7 @@ public class AppConfig {
     // Swagger Configurations
     @Bean
     public Docket api() {
-//        return new Docket(DocumentationType.OAS_30)
-        return new Docket(DocumentationType.SWAGGER_12)
+        return new Docket(DocumentationType.OAS_30)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.wayapay.xerointegration.controller"))
                 .paths(PathSelectors.any())
